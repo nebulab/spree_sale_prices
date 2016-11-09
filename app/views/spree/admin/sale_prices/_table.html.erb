@@ -2,6 +2,7 @@
   <colgroup>
     <col />
     <col />
+    <col />
     <col style="width: 30%" />
     <col style="width: 30%" />
     <col />
@@ -10,6 +11,7 @@
 
   <thead>
     <tr data-hook="products_header">
+      <th><%= Spree.t('sku') %></th>
       <th><%= Spree.t('sale_price_active') %></th>
       <th><%= Spree.t('sale_price') %></th>
       <th><%= Spree.t('sale_price_start_at') %></th>
@@ -20,6 +22,10 @@
   </thead>
 
   <tbody>
-    <%= render partial: "sale_price", collection: product.master.sale_prices, locals: {product: product} %>
+    <% if product.variants.any? %>
+      <%= render partial: "sale_price", collection: product.variants.flat_map(&:sale_prices) %>
+    <% else %>
+      <%= render partial: "sale_price", collection: product.master.sale_prices %>
+    <% end %>
   </tbody>
 </table>

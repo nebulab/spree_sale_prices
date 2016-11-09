@@ -1,5 +1,8 @@
 <tr data-hook="products_row" id="<%= spree_dom_id(sale_price) %>" class="spree-product-sale-price">
   <td class="align-center">
+    <%= sale_price.variant.sku %>
+  </td>
+  <td class="align-center">
     <%= sale_price.active? ? 'Yes' : '' %>
   </td>
   <td>
@@ -15,6 +18,6 @@
     <%= sale_price.enabled %>
   </td>
   <td class="actions">
-    <%= link_to_delete sale_price, {url: admin_product_sale_price_url(product, sale_price.id), no_text: true} %>
+    <%= link_to_delete sale_price, {url: admin_product_sale_price_url(sale_price.variant.product, sale_price.id), no_text: true} %>
   </td>
 </tr>
