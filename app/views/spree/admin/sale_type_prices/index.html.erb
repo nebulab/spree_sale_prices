@@ -1,0 +1,60 @@
+<%= csrf_meta_tag %>
+
+<div id="add-line-item">
+  <fieldset>
+    <legend align="center">
+      <%= Spree.t('add_product_sale_type_prices') %>
+    </legend>
+
+    <% if @sale_type_prices.any? %>
+    <table class="index sortable">
+      <colgroup>
+        <col style="width: 5%" />
+        <col style="width: 15%" />
+        <col style="width: 10%" />
+        <col style="width: 10%" />
+        <col style="width: 10%" />
+        <col style="width: 20%" />
+        <col style="width: 15%" />
+        <col style="width: 15%" />
+      </colgroup>
+      <thead data-hook="variants_header">
+        <tr>
+          <th colspan="2"><%= Spree.t(:name) %></th>
+          <th><%= Spree.t(:start_at) %></th>
+          <th><%= Spree.t(:end_at) %></th>
+          <th><%= Spree.t(:enabled) %></th>
+          <th><%= Spree.t(:calculator_type) %></th>
+          <th><%= Spree.t(:value) %></th>
+          <th class="actions"></th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @sale_type_prices.each do |sale_type_price| %>
+        <tr id="<%= spree_dom_id sale_type_price %>" data-hook="sale_type_prices_row" class="<%= cycle('odd', 'even')%>">
+          <td class="no-border">
+            <span class="handle"></span>
+          </td>
+          <td><%= sale_type_price.name %></td>
+          <td><%= sale_type_price.start_at %></td>
+          <td><%= sale_type_price.end_at %></td>
+          <td><%= sale_type_price.enabled %></td>
+          <td><%= sale_type_price.calculator_type %></td>
+          <td><%= sale_type_price.value %></td>
+          <td class="actions">
+            <%= link_to_edit(sale_type_price, :no_text => true) %>
+            &nbsp;
+            <%= link_to_delete(sale_type_price, :no_text => true) %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <% else %>
+      <div class="alpha twelve columns no-objects-found">
+        <%= Spree.t(:no_resource_found, resource: I18n.t(:other, scope: 'activerecord.models.spree/sale_type_prices')) %>,
+        <%= link_to Spree.t(:add_one), spree.new_admin_sale_type_price_path() %>!
+      </div>
+    <% end %>
+  </fieldset>
+</div>
