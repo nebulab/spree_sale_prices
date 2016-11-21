@@ -9,6 +9,9 @@
     <%= sale_price.display_price.to_html %>
   </td>
   <td>
+    <%= display_original_price(sale_price.variant) %>
+  </td>
+  <td>
     <%= (l sale_price.start_at) if sale_price.start_at %>
   </td>
   <td>
