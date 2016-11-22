@@ -1,12 +1,6 @@
-<% content_for :page_title do %>
-  <%= Spree.t(:sale_type_price) %>
-<% end %>
+<%= render :partial => 'spree/admin/sale_type_prices/tabs', :locals => {:current => "Edit"} %>
 
-<% content_for :page_actions do %>
-  <li>
-    <%= button_link_to Spree.t(:back_to_sale_type_prices_list), spree.admin_sale_type_price_path, :icon => 'arrow-left' %>
-  </li>
-<% end %>
+<%= csrf_meta_tag %>
 
 <%= render :partial => 'spree/shared/error_messages', :locals => { :target => @sale_type_price } %>
 

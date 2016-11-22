@@ -7,13 +7,14 @@ Spree::Price.class_eval do
 
   def new_sale(value, params = {})
     sale_price_params = {
-        value: value,
-        start_at: params.fetch(:start_at, Time.now),
-        end_at: params.fetch(:end_at, nil),
-        enabled: params.fetch(:enabled, true),
-        calculator: params.fetch(:calculator_type, Spree::Calculator::FixedAmountSalePriceCalculator.new)
+      value: value,
+      start_at: params.fetch(:start_at, Time.now),
+      end_at: params.fetch(:end_at, nil),
+      enabled: params.fetch(:enabled, true),
+      calculator: params.fetch(:calculator_type, Spree::Calculator::FixedAmountSalePriceCalculator.new),
+      sale_type_price_id: params.fetch(:sale_type_price_id, nil)
     }
-    return sale_prices.new(sale_price_params)
+    sale_prices.new(sale_price_params)
   end
 
   # TODO make update_sale method

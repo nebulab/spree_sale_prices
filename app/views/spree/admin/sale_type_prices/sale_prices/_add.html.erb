@@ -1,0 +1,22 @@
+<%= render :partial => "spree/admin/variants/autocomplete", :formats => :js %>
+<div id="add-line-item">
+  <fieldset>
+    <legend align="center">
+      <%= Spree.t('add_product_sale_prices') %>
+    </legend>
+
+    <%= form_for [:admin, @sale_type_price, Spree::SalePrice.new], remote: true do |f| %>
+      <div class="row">
+        <div data-hook="add_product_name" class="columns nine alpha">
+          <%= label_tag :add_variant_id, Spree.t(:name_or_sku) %>
+          <%= hidden_field_tag :variant_id, "", :class => "variant_autocomplete fullwidth" %>
+        </div>
+
+        <div class="columns one omega">
+          <%= f.label :submit, style: 'visibility: hidden;' %>
+          <%= f.submit "Put on Sale" %>
+        </div>
+      </div>
+    <% end %>
+  </fieldset>
+</div>

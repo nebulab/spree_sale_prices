@@ -1,0 +1,8 @@
+<%= render :partial => 'spree/admin/sale_type_prices/tabs', :locals => {:current => "Sale Prices"} %>
+
+<%= csrf_meta_tag %>
+
+<%= render :partial => 'spree/admin/sale_type_prices/sale_prices/add' %>
+<div id="product-sale-prices-table">
+  <%= render partial: "spree/admin/sale_type_prices/sale_prices/table", locals: { sale_type_prices: @sale_type_price } %>
+</div>

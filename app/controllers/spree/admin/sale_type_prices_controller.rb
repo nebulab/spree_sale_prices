@@ -1,14 +1,11 @@
 module Spree
   module Admin
     class SaleTypePricesController < ResourceController
-
       respond_to :js, :html
 
-      before_filter :calculators_type, only: [:new, :edit]
+      before_action :calculators_type, only: [:new, :edit]
 
-      def index
-        @sale_type_prices = SaleTypePrice.all
-      end
+      private
 
       def calculators_type
         @calculators = [
@@ -16,8 +13,6 @@ module Spree
           'Spree::Calculator::FixedAmountSalePriceCalculator'
         ]
       end
-
-      private
 
       def permit_attributes
         params.require(:sale_type_price).permit([:name, :start_at, :end_at,

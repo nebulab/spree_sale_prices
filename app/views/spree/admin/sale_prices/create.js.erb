@@ -1,1 +1,6 @@
-$('table#product_sale_prices').replaceWith('<%= j render partial: "table", locals: {product: @product} %>');
+<% if @product.present? %>
+  $('table#product_sale_prices').replaceWith('<%= j render partial: "table", locals: { product: @product } %>');
+<% elsif @sale_type_price.present? %>
+  $('table#sale_type_price_sale_prices').replaceWith('<%= j render partial: "table", locals: { spree_type_price: @spree_type_price } %>');
+<% end %>
+

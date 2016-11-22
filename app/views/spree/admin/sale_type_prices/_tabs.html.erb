@@ -1,0 +1,20 @@
+<% content_for :page_title do %>
+  <%= Spree.t(:editing_product) %> &ldquo;<%= @sale_type_price.name %>&rdquo;
+<% end %>
+
+<% content_for :sidebar_title do %>
+  <span class="sku"><%= @sale_type_price.name %></span>
+<% end %>
+
+<% content_for :sidebar do %>
+  <nav class="menu">
+    <ul data-hook="admin_product_tabs">
+      <%= content_tag :li, :class => ('active' if current == 'Edit') do %>
+        <%= link_to_with_icon 'edit', Spree.t(:edit), edit_admin_sale_type_price_url(@sale_type_price) %>
+      <% end if can?(:admin, Spree::SaleTypePrice) %>
+      <%= content_tag :li, :class => ('active' if current == 'Sale Prices') do %>
+        <%= link_to_with_icon 'edit', Spree.t(:sale_prices), sale_prices_admin_sale_type_price_url(@sale_type_price) %>
+      <% end if can?(:admin, Spree::SaleTypePrice) %>
+    </ul>
+  </nav>
+<% end %>
