@@ -2,7 +2,7 @@
 
 <%= form_for [:admin, @sale_type_price] do |f| %>
   <fieldset data-hook="admin_sale_type_price_new_form">
-    <legend align="center"><%= Spree.t(:new_sale_type_price) %></legend>
+    <legend align="center"><%= Spree.t(:sale_type_price_new) %></legend>
     <%= render :partial => 'form', :locals => { :f => f } %>
     <%= render :partial => 'spree/admin/shared/new_resource_links' %>
   </fieldset>

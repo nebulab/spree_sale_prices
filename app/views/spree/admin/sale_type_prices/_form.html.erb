@@ -7,7 +7,7 @@
 
     <div data-hook="admin_sale_type_price_form_start_at">
       <%= f.field_container :start_at do %>
-        <%= f.label :start_at, Spree.t(:start_at) %>
+        <%= f.label :start_at, Spree.t(:sale_price_start_at) %>
         <%= f.error_message_on :start_at %>
         <%= f.text_field :start_at, :value => datepicker_field_value(@sale_type_price.start_at), :class => 'datepicker' %>
       <% end %>
@@ -15,7 +15,7 @@
 
     <div data-hook="admin_sale_type_price_form_end_at">
       <%= f.field_container :end_at do %>
-        <%= f.label :end_at, Spree.t(:end_at) %>
+        <%= f.label :end_at, Spree.t(:sale_price_end_at) %>
         <%= f.error_message_on :end_at %>
         <%= f.text_field :end_at, :value => datepicker_field_value(@sale_type_price.end_at), :class => 'datepicker' %>
       <% end %>
@@ -24,19 +24,19 @@
     <div data-hook="admin_sale_type_price_form_enabled" class="field">
       <%= f.field_container :enabled do %>
         <%= f.check_box :enabled %>
-        <%= f.label :enabled, Spree.t(:enabled) %>
+        <%= f.label :enabled, Spree.t(:sale_price_enabled) %>
       <% end %>
     </div>
 
     <div data-hook="admin_sale_type_price_form_calculator_type" class="field">
       <%= f.field_container :calculator_type do %>
-        <%= f.label :calculator_type, Spree.t(:calculator_type) %>
+        <%= f.label :calculator_type, Spree.t(:sale_price_calculator_type) %>
         <%= f.select(:calculator_type, options_for_select(@calculators, f.object.calculator_type), {}, :class => 'select2 fullwidth') %>
       <% end %>
     </div>
 
     <div data-hook="admin_sale_type_price_form_value" class="field">
-      <%= f.label :value, Spree.t(:value) %>
+      <%= f.label :value, Spree.t(:sale_price_amount) %>
       <%= f.text_field :value, :class => 'fullwidth' %>
     </div>
   </div>

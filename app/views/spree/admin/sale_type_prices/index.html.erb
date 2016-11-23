@@ -3,7 +3,7 @@
 <div id="add-line-item">
   <fieldset>
     <legend align="center">
-      <%= Spree.t('add_product_sale_type_prices') %>
+      <%= Spree.t('add_sale_type_prices') %>
     </legend>
 
     <% if @sale_type_prices.any? %>
@@ -21,11 +21,11 @@
       <thead data-hook="variants_header">
         <tr>
           <th colspan="2"><%= Spree.t(:name) %></th>
-          <th><%= Spree.t(:start_at) %></th>
-          <th><%= Spree.t(:end_at) %></th>
-          <th><%= Spree.t(:enabled) %></th>
-          <th><%= Spree.t(:calculator_type) %></th>
-          <th><%= Spree.t(:value) %></th>
+          <th><%= Spree.t(:sale_price_start_at) %></th>
+          <th><%= Spree.t(:sale_price_end_at) %></th>
+          <th><%= Spree.t(:sale_price_enabled) %></th>
+          <th><%= Spree.t(:sale_price_calculator_type) %></th>
+          <th><%= Spree.t(:sale_price_amount) %></th>
           <th class="actions"></th>
         </tr>
       </thead>
