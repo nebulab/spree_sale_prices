@@ -6,6 +6,12 @@
       <%= Spree.t('add_sale_type_prices') %>
     </legend>
 
+    <% content_for :page_actions do %>
+      <li id="new_sale_type_price_link">
+        <%= button_link_to Spree.t(:sale_type_price_new), new_object_url, { :icon => 'plus', :id => 'admin_new_sale_type_price' } %>
+      </li>
+    <% end if can?(:create, Spree::Product) %>
+
     <% if @sale_type_prices.any? %>
     <table class="index sortable">
       <colgroup>
