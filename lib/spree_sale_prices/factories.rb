@@ -32,4 +32,16 @@ FactoryGirl.define do
     end
   end
 
+  factory :sale_type_price, class: Spree::SaleTypePrice do
+    value 10.90
+    start_at nil
+    end_at nil
+    enabled true
+    calculator_type 'Spree::Calculator::FixedAmountSalePriceCalculator'
+
+    factory :active_sale_type_price do
+      start_at { Time.now }
+      enabled true
+    end
+  end
 end

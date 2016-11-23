@@ -11,9 +11,7 @@ module Spree
         if product.present?
           @sale_price = product.put_on_sale params[:sale_price][:value], sale_price_params
         elsif sale_type_price.present?
-          @sale_price = sale_type_price.put_on_sale(variant,
-                                                    sale_type_price.value,
-                                                    sale_type_price_attributes)
+          @sale_price = sale_type_price.put_on_sale(variant)
         else
           redirect_to request.referer
         end
@@ -62,16 +60,6 @@ module Spree
           :all_variants,
           :calculator
         )
-      end
-
-      def sale_type_price_attributes
-        {
-          all_variants:    false,
-          calculator_type: sale_type_price.instance_calculator_type,
-          start_at:        sale_type_price.start_at,
-          enabled:         sale_type_price.enabled,
-          end_at:          sale_type_price.end_at
-        }
       end
     end
   end
