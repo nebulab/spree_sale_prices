@@ -3,6 +3,7 @@
 handle_datetime_picker_fields = function() {
   $('.datetimepicker').datetimepicker({
     dateFormat: Spree.translations.date_picker,
+    timeFormat: "hh:mm tt",
     dayNames: Spree.translations.abbr_day_names,
     dayNamesMin: Spree.translations.abbr_day_names,
     firstDay: Spree.translations.first_day,
