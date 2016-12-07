@@ -9,10 +9,10 @@
     <%= sale_price.display_price.to_html %>
   </td>
   <td>
-    <%= (l sale_price.start_at) if sale_price.start_at %>
+    <%= (l sale_price.start_at, format: :long) if sale_price.start_at %>
   </td>
   <td>
-    <%= (l sale_price.end_at) if sale_price.end_at %>
+    <%= (l sale_price.end_at, format: :long) if sale_price.end_at %>
   </td>
   <td class="align-center">
     <%= sale_price.enabled %>
