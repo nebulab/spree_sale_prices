@@ -59,5 +59,20 @@ RSpec.feature 'Admin sale prices' do
         within('.end-date') { expect(page).to have_content('December 17, 2016 5:35 PM') }
       end
     end
+
+    context 'with multiple variants' do
+      let!(:variants) { create_list(:variant, 2, product: product) }
+
+      scenario 'a new sale price is added to the list' do
+        visit spree.admin_product_sale_prices_path(product_id: product.slug)
+
+        fill_in('Amount', with: 32.33)
+        fill_in('Sale Start Date', with: '2016/12/11 16:12')
+        fill_in('Sale End Date', with: '2016/12/17 05:35 pm')
+        click_button('Add Sale Price')
+
+        expect(page).to have_selector('[data-hook="products_row"]', count: 2)
+      end
+    end
   end
 end
