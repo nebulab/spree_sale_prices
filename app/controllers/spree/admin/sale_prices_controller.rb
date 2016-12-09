@@ -11,7 +11,8 @@ module Spree
       end
 
       def create
-        @sale_price = @product.put_on_sale params[:sale_price][:value], sale_price_params
+        @sale_price = @product.put_on_sale(
+          params[:sale_price][:value], sale_price_params, selected_variant_ids)
         respond_with(@sale_price)
       end
 
@@ -26,6 +27,10 @@ module Spree
       def load_product
         @product = Spree::Product.find_by(slug: params[:product_id])
         redirect_to request.referer unless @product.present?
+      end
+
+      def selected_variant_ids
+        params.fetch(:variant_ids, [])
       end
 
       def sale_price_params

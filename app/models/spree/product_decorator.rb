@@ -11,9 +11,9 @@ Spree::Product.class_eval do
                       :original_price, :on_sale?
 
   # TODO also accept a class reference for calculator type instead of only a string
-  def put_on_sale(value, params = {})
+  def put_on_sale(value, params = {}, selected_variants = [])
     all_variants = params[:all_variants] || true
-    run_on_variants(all_variants) { |v| v.put_on_sale(value, params) }
+    run_on_variants(all_variants, selected_variants) { |v| v.put_on_sale(value, params) }
     self.touch
   end
 
@@ -40,9 +40,11 @@ Spree::Product.class_eval do
   end
 
   private
-    def run_on_variants(all_variants, &block)
+    def run_on_variants(all_variants, selected_variants = [], &block)
       if all_variants && variants.present?
-        variants.each { |v| block.call v }
+        scope = variants
+        scope = variants.where(id: selected_variants) if selected_variants.present?
+        scope.each { |v| block.call v }
       end
       block.call master
     end

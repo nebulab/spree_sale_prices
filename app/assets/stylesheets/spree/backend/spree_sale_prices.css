@@ -1,1 +1,5 @@
 /*= require jquery-ui-timepicker-addon */
+
+.variant_sales_picker {
+  width: 100%;
+}

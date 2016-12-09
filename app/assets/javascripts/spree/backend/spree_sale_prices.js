@@ -17,4 +17,5 @@ handle_datetime_picker_fields = function() {
 
 $(document).ready(function() {
   handle_datetime_picker_fields();
+  $('.variant_sales_picker').select2();
 });
