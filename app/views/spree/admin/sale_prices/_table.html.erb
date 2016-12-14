@@ -22,10 +22,6 @@
   </thead>
 
   <tbody>
-    <% if product.variants.any? %>
-      <%= render partial: "sale_price", collection: product.variants.flat_map(&:sale_prices) %>
-    <% else %>
-      <%= render partial: "sale_price", collection: product.master.sale_prices %>
-    <% end %>
+    <%= render partial: "sale_price", collection: sale_prices %>
   </tbody>
 </table>

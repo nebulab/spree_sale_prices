@@ -19,24 +19,29 @@ RSpec.feature 'Admin sale prices' do
     end
 
     context 'with multiple variants' do
-      let(:variants) { create_list(:variant, 2, product: product) }
+      let(:variants) { create_list(:variant, 3, product: product) }
 
       before do
-        variants.first.put_on_sale(10.95)
-        variants.last.put_on_sale(11.95)
+        variants.first.put_on_sale(10.95, start_at: 5.days.from_now)
+        variants.second.put_on_sale(11.95, start_at: 10.days.from_now)
+        variants.last.put_on_sale(32.21)
       end
 
-      scenario 'a list of variant sale prices is shown expect the master' do
+      scenario 'a list of variant sale prices is shown and sorted by start_at' do
         visit spree.admin_product_sale_prices_path(product_id: product.slug)
 
-        expect(page).to have_selector('[data-hook="products_row"]', count: 2)
+        expect(page).to have_selector('[data-hook="products_row"]', count: 3)
 
         within('[data-hook="products_row"]:first') do
+          expect(page).to have_content(variants.last.sku)
+        end
+
+        within('[data-hook="products_row"]:nth-child(2)') do
           expect(page).to have_content(variants.first.sku)
         end
 
         within('[data-hook="products_row"]:last') do
-          expect(page).to have_content(variants.last.sku)
+          expect(page).to have_content(variants.second.sku)
         end
       end
     end

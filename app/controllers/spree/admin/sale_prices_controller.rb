@@ -7,12 +7,14 @@ module Spree
       respond_to :js, :html
 
       def index
-        @sale_prices = @product.sale_prices
+        @sale_prices = Spree::SalePrice.for_product(@product)
       end
 
       def create
-        @sale_price = @product.put_on_sale(
-          params[:sale_price][:value], sale_price_params, selected_variant_ids)
+        @sale_price = @product.put_on_sale(params[:sale_price][:value],
+                                           sale_price_params, selected_variant_ids)
+
+        @sale_prices = Spree::SalePrice.for_product(@product)
         respond_with(@sale_price)
       end
 

@@ -10,6 +10,7 @@ module Spree
     validates :calculator, presence: true
     accepts_nested_attributes_for :calculator
 
+    scope :ordered, -> { order(:start_at) }
     scope :active, -> { where(enabled: true).where('(start_at <= ? OR start_at IS NULL) AND (end_at >= ? OR end_at IS NULL)', Time.now, Time.now) }
 
     before_destroy :touch_product
@@ -17,6 +18,16 @@ module Spree
     #def self.calculators
     #  Rails.application.config.spree.calculators.send(self.to_s.tableize.gsub('/', '_').sub('spree_', ''))
     #end
+
+    def self.for_product(product)
+      ids = if product.variants.any?
+              product.variant_ids
+            else
+              product.master.id
+            end
+
+      ordered.where(price_id: Spree::Price.where(variant_id: ids))
+    end
 
     def calculator_type
       calculator.class.to_s if calculator
