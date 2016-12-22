@@ -20,12 +20,7 @@ module Spree
     #end
 
     def self.for_product(product)
-      ids = if product.variants.any?
-              product.variant_ids
-            else
-              product.master.id
-            end
-
+      ids = product.variants_including_master
       ordered.where(price_id: Spree::Price.where(variant_id: ids))
     end
 

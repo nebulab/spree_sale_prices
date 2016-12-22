@@ -43,7 +43,7 @@ Spree::Product.class_eval do
     def run_on_variants(all_variants, selected_variants = [], &block)
       if all_variants && variants.present?
         scope = variants
-        scope = variants.where(id: selected_variants) if selected_variants.present?
+        scope = scope.where(id: selected_variants) if selected_variants.present?
         scope.each { |v| block.call v }
       end
       block.call master

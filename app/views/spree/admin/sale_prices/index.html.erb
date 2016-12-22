@@ -28,13 +28,17 @@
         </div>
       </div>
 
-      <div class="row">
-        <div class="columns three">
-          <%= label_tag 'variant_ids[]', Spree.t('variants') %>
-          <%= select_tag 'variant_ids[]', options_from_collection_for_select(@product.variants, :id, :sku),
-                         multiple: 'multiple', class: 'variant_sales_picker' %>
+      <% if @product.variants.count > 0 %>
+        <div class="row">
+          <div class="columns three">
+            <%= label_tag 'variant_ids[]', Spree.t('variants') %>
+            <%= select_tag 'variant_ids[]',
+                           options_from_collection_for_select(
+                             @product.variants_including_master, :id, :product_name_or_options_text),
+                           multiple: 'multiple', class: 'variant_sales_picker' %>
+          </div>
         </div>
-      </div>
+      <% end %>
 
       <div class="row">
         <div class="columns three">

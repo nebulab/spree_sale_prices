@@ -61,7 +61,7 @@ describe Spree::SalePrice do
       let(:variant) { create(:variant) }
       let(:product) { variant.product }
 
-      it { is_expected.to match variant.sale_prices }
+      it { is_expected.to match variant.sale_prices + product.master.sale_prices }
     end
   end
 end
