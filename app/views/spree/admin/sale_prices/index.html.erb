@@ -28,7 +28,7 @@
         </div>
       </div>
 
-      <% if @product.variants.count > 0 %>
+      <% if @product.has_variants? %>
         <div class="row">
           <div class="columns three">
             <%= label_tag 'variant_ids[]', Spree.t('variants') %>
