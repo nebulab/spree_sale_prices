@@ -3,7 +3,7 @@
 
 en:
   original_price: "Original Price (Standard Currency)"
-  sale_price_amount: 'Amount'
+  sale_price_amount: "Sale Price"
   sale_price_currency: "Currency"
   sale_price_start_at: "Sale Start Date"
   sale_price_end_at: "Sale End Date"

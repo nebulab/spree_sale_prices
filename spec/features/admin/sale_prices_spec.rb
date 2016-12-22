@@ -66,7 +66,7 @@ RSpec.feature 'Admin sale prices' do
     scenario 'a new sale price is added to the list' do
       visit spree.admin_product_sale_prices_path(product_id: product.slug)
 
-      fill_in('Amount', with: 32.33)
+      fill_in('Sale Price', with: 32.33)
       fill_in('Sale Start Date', with: '2016/12/11 16:12')
       fill_in('Sale End Date', with: '2016/12/17 05:35 pm')
       click_button('Add Sale Price')
@@ -86,7 +86,7 @@ RSpec.feature 'Admin sale prices' do
       scenario 'a new sale price is added to the list' do
         visit spree.admin_product_sale_prices_path(product_id: product.slug)
 
-        fill_in('Amount', with: 32.33)
+        fill_in('Sale Price', with: 32.33)
         fill_in('Sale Start Date', with: '2016/12/11 16:12')
         fill_in('Sale End Date', with: '2016/12/17 05:35 pm')
         click_button('Add Sale Price')
@@ -97,7 +97,7 @@ RSpec.feature 'Admin sale prices' do
       scenario 'only certain variants are added if selected' do
         visit spree.admin_product_sale_prices_path(product_id: product.slug)
 
-        fill_in('Amount', with: 32.33)
+        fill_in('Sale Price', with: 32.33)
         fill_in('Sale Start Date', with: '2016/12/11 16:12')
         fill_in('Sale End Date', with: '2016/12/17 05:35 pm')
         select(product.name, from: 'Variants')
