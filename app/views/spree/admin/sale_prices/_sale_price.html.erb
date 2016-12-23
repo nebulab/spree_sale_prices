@@ -1,6 +1,6 @@
 <tr data-hook="products_row" id="<%= spree_dom_id(sale_price) %>" class="spree-product-sale-price">
   <td class="align-center">
-    <%= sale_price.variant.product_name_or_options_text %>
+    <%= sale_price.variant.sku %>
   </td>
   <td class="align-center">
     <%= sale_price.active? ? 'Yes' : '' %>

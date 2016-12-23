@@ -2,7 +2,7 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  original_price: "Original Price (Standard Currency)"
+  original_price: "Original Price"
   sale_price_amount: "Sale Price"
   sale_price_currency: "Currency"
   sale_price_start_at: "Sale Start Date"

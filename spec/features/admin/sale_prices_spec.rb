@@ -27,7 +27,7 @@ RSpec.feature 'Admin sale prices' do
       expect(page).not_to have_selector('.variant_sales_picker')
 
       within('[data-hook="products_row"]:first') do
-        expect(page).to have_content(product.name)
+        expect(page).to have_content(product.sku)
       end
     end
 
@@ -44,19 +44,19 @@ RSpec.feature 'Admin sale prices' do
         expect(page).to have_selector('[data-hook="products_row"]', count: 4)
 
         within('[data-hook="products_row"]:first') do
-          expect(page).to have_content(product.name)
+          expect(page).to have_content(product.sku)
         end
 
         within('[data-hook="products_row"]:nth-child(2)') do
-          expect(page).to have_content(large.options_text)
+          expect(page).to have_content(large.sku)
         end
 
         within('[data-hook="products_row"]:nth-child(3)') do
-          expect(page).to have_content(small.options_text)
+          expect(page).to have_content(small.sku)
         end
 
         within('[data-hook="products_row"]:last') do
-          expect(page).to have_content(medium.options_text)
+          expect(page).to have_content(medium.sku)
         end
       end
     end
@@ -72,7 +72,7 @@ RSpec.feature 'Admin sale prices' do
       click_button('Add Sale Price')
 
       within('[data-hook="products_row"]') do
-        expect(page).to have_content(product.name)
+        expect(page).to have_content(product.sku)
         expect(page).to have_content(32.33)
 
         within('.start-date') { expect(page).to have_content('December 11, 2016 4:12 PM') }
@@ -100,9 +100,9 @@ RSpec.feature 'Admin sale prices' do
         fill_in('Sale Price', with: 32.33)
         fill_in('Sale Start Date', with: '2016/12/11 16:12')
         fill_in('Sale End Date', with: '2016/12/17 05:35 pm')
-        select(product.name, from: 'Variants')
-        select(small.options_text, from: 'Variants')
-        select(medium.options_text, from: 'Variants')
+        select(product.master.sku_and_options_text, from: 'Variants')
+        select(small.sku_and_options_text, from: 'Variants')
+        select(medium.sku_and_options_text, from: 'Variants')
         click_button('Add Sale Price')
         expect(page).to have_selector('[data-hook="products_row"]', count: 3)
       end

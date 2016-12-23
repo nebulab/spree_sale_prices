@@ -57,10 +57,6 @@ Spree::Variant.class_eval do
     run_on_prices(currencies) { |p| p.stop_sale }
   end
 
-  def product_name_or_options_text
-    is_master? ? product.name : options_text
-  end
-
   private
     # runs on all prices or on the ones with the currencies you've specified
     def run_on_prices(currencies = nil, &block)
