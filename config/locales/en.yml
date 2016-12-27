@@ -8,6 +8,7 @@ en:
   sale_price_start_at: "Sale Start Date"
   sale_price_end_at: "Sale End Date"
   spree:
+    add_sale_button: "Add Sale Price"
     sale_price: "Sale Price"
     product_sale_prices: "Product Sale Prices"
     add_product_sale_prices: "Add Product Sale Price"
@@ -15,3 +16,8 @@ en:
     sale_price_enabled: "Enabled"
     sale_price_start_at: "Sale Start Date"
     sale_price_end_at: "Sale End Date"
+    update_product_sale_price: "Update Product Sale Price"
+    update_sale_button: "Update Sale Price"
+  time:
+    formats:
+      datetimepicker: "%Y/%m/%d %I:%M %P"

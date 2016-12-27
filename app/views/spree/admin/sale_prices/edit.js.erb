@@ -1,0 +1,4 @@
+$('#sale_price_form').replaceWith('<%=j render("form", product: @product, sale_price: @sale_price) %>');
+SpreeSalePrices.init();
+$('select.variant_sales_picker').val(['<%= @sale_price.variant.id %>']).change();
+$('select').select2('readonly', true);

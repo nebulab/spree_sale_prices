@@ -1,0 +1,61 @@
+<fieldset id="sale_price_form">
+  <legend align="center">
+    <% if sale_price.new_record? %>
+      <%= Spree.t('add_product_sale_prices') %>
+    <% else %>
+      <%= Spree.t('update_product_sale_price') %>
+    <% end %>
+  </legend>
+
+  <%= form_for [:admin, product, sale_price], remote: true do |f| %>
+    <div class="row">
+      <div class="columns four">
+        <%= label_tag t('original_price') %>
+        <%= text_field_tag '', product.original_price.to_f, disabled: true %>
+      </div>
+      <div class="columns four">
+        <%= f.label :value, t('sale_price_amount') %><br />
+        <%= f.text_field :value %>
+      </div>
+      <div class="columns two">
+        <%= f.label :currency, t('sale_price_currency') %><br />
+        <%= f.select :currency, options_for_select(supported_currencies_for_sale_price) %>
+      </div>
+    </div>
+
+    <% if product.has_variants? %>
+      <div class="row">
+        <div class="columns ten">
+          <%= label_tag 'variant_ids[]', Spree.t('variants') %>
+          <%= select_tag 'variant_ids[]',
+                         options_from_collection_for_select(
+                           product.variants_including_master, :id, :sku_and_options_text),
+                         multiple: true, class: 'variant_sales_picker' %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="row">
+      <div class="columns four">
+        <%= f.label :start_at, t('sale_price_start_at') %>
+        <%= f.text_field :start_at, class: "datetimepicker",
+                                    value: sale_price.start_at.present? ? l(sale_price.start_at, format: :datetimepicker) : "" %>
+      </div>
+      <div class="columns four">
+        <%= f.label :end_at, t('sale_price_end_at') %>
+        <%= f.text_field :end_at, class: "datetimepicker",
+                                  value: sale_price.end_at.present? ? l(sale_price.end_at, format: :datetimepicker) : "" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="columns three">
+        <% if sale_price.new_record? %>
+          <%= f.submit Spree.t('add_sale_button') %>
+        <% else %>
+          <%= f.submit Spree.t('update_sale_button') %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</fieldset>
