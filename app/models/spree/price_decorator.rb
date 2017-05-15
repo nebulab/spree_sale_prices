@@ -55,7 +55,7 @@ Spree::Price.class_eval do
   end
 
   def original_price=(value)
-    self[:amount] = parse_price(value)
+    self[:amount] = Spree::LocalizedNumber.pars(value)
   end
 
   def price
@@ -66,7 +66,7 @@ Spree::Price.class_eval do
     if on_sale?
       sale_price = price
     else
-      self[:amount] = parse_price(price)
+      self[:amount] = Spree::LocalizedNumber.parse(price)
     end
   end
 
